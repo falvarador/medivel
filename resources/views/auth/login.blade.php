@@ -1,6 +1,14 @@
-@extends('layouts.external')
+<x-guest-layout>
+    <x-slot:sidebar>
+        <h1 class="title">
+            {{ __('Welcome again') }}
+        </h1>
+        <p class="subtitle">
+            {{ __('Provide your credentials to access your account.') }}
+            <strong>{{__('Medivel!') }}</strong>
+        </p>
+    </x-slot:sidebar>
 
-@section('content')
     <form method="POST" action="{{ route('login') }}" class="box">
         @csrf
 
@@ -8,20 +16,18 @@
             <h2 class="title is-size-4">{{ __('Sing in') }}</h2>
         </div>
 
+        <!-- Email Address -->
         <div class="field">
             <label class="label">{{ __('Email address') }}</label>
             <div class="control">
-                <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email"
+                <input id="email" type="email" class="input @error('email') is-danger @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter your email">
 
-                @error('email')
-                    <p class="help is-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </p>
-                @enderror
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
         </div>
 
+        <!-- Password -->
         <div class="field">
             <span class="is-flex is-justify-content-space-between">
                 <label class="label">{{ __('Password') }}</label>
@@ -32,29 +38,27 @@
                 @endif
             </span>
             <div class="control">
-                <input id="password" type="password" class="input @error('password') is-danger @enderror" name="password"
-                    required autocomplete="current-password" placeholder="Enter your password">
+                <input id="password" type="password" class="input @error('password') is-danger @enderror"
+                    name="password" required autocomplete="current-password" placeholder="Enter your password">
 
-                @error('password')
-                    <span class="help is-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
         </div>
 
+        <!-- Remember Me -->
         <div class="field">
             <div class="control">
-                <label class="checkbox">
+                <label for="remember" class="checkbox">
                     <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                     {{ __('Remember Me') }}
                 </label>
             </div>
         </div>
 
+        <!-- Create account & Submit -->
         <div class="field is-grouped is-grouped-right">
             <a class="control" href="{{ route('register') }}">
-                <p class="button is-link is-dark">
+                <p class="button is-link is-light">
                     {{ __('Create account') }}
                 </p>
             </a>
@@ -63,4 +67,4 @@
             </div>
         </div>
     </form>
-@endsection
+</x-guest-layout>

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Medivel') }}</title>
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -21,26 +21,14 @@
         <main class="container">
             <div class="columns is-8 is-vcentered">
                 <div class="column">
-                    <h1 class="title">
-                        {{ __('Welcome') }}
-                    </h1>
-                    <p class="subtitle">
-                        {{ __('Sing in or register your account of') }}
-                        <strong>{{__('Medivel!') }}</strong>
-                    </p>
+                    {{ $sidebar}}
                 </div>
                 <div class="column">
-                    @yield('content')
+                    {{ $slot }}
                 </div>
             </div>
         </main>
     </section>
 </body>
-
-<style>
-    main {
-        height: 100vh;
-    }
-</style>
 
 </html>

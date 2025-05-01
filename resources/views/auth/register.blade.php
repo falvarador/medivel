@@ -1,6 +1,14 @@
-@extends('layouts.external')
+<x-guest-layout>
+    <x-slot:sidebar>
+        <h1 class="title">
+            {{ __('Welcome aboard') }}
+        </h1>
+        <p class="subtitle">
+            {{ __('Enter your username and password to create your login credentials to access the platform.') }}
+            <strong>{{__('Medivel!') }}</strong>
+        </p>
+    </x-slot:sidebar>
 
-@section('content')
     <form method="POST" action="{{ route('register') }}" class="box">
         @csrf
 
@@ -8,6 +16,7 @@
             <h2 class="title is-size-4">{{ __('Sing up') }}</h2>
         </div>
 
+        <!-- Name -->
         <div class="field">
             <label for="name" class="label">{{ __('Name') }}</label>
 
@@ -15,42 +24,33 @@
                 <input id="name" type="text" class="input @error('name') is-danger @enderror" name="name"
                     value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Enter your name">
 
-                @error('name')
-                    <span class="help is-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
         </div>
 
+        <!-- Email Address -->
         <div class="field">
             <label class="label">{{ __('Email address') }}</label>
             <div class="control">
-                <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email"
+                <input id="email" type="email" class="input @error('email') is-danger @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter your email">
 
-                @error('email')
-                    <p class="help is-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </p>
-                @enderror
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
         </div>
 
+        <!-- Password -->
         <div class="field">
             <label class="label">{{ __('Password') }}</label>
             <div class="control">
-                <input id="password" type="password" class="input @error('password') is-danger @enderror" name="password"
-                    required autocomplete="new-password" placeholder="Enter your password">
+                <input id="password" type="password" class="input @error('password') is-danger @enderror"
+                    name="password" required autocomplete="new-password" placeholder="Enter your password">
 
-                @error('password')
-                    <span class="help is-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
         </div>
 
+        <!-- Confirm Password -->
         <div class="field">
             <label for="password-confirm" class="label">{{ __('Confirm Password') }}</label>
             <div class="control">
@@ -59,9 +59,10 @@
             </div>
         </div>
 
+        <!-- I have an account & Submit -->
         <div class="field is-grouped is-grouped-right mt-5">
             <a class="control" href="{{ route('login') }}">
-                <p class="button is-link is-dark">
+                <p class="button is-link is-light">
                     {{ __('I have an account') }}
                 </p>
             </a>
@@ -70,4 +71,4 @@
             </div>
         </div>
     </form>
-@endsection
+</x-guest-layout>

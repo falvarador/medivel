@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
     <section class="hero">
         <div class="hero-body">
             <p class="title">{{ __('Home') }}</p>
@@ -14,4 +12,4 @@
             </p>
         </div>
     </section>
-@endsection
+</x-app-layout>

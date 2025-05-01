@@ -18,10 +18,10 @@
     <section class="section">
         <div class="container">
             <h1 class="title">
-                Hello World
+                Medivel
             </h1>
             <p class="subtitle">
-                My first website with <strong>Bulma</strong>!
+                It is a Medium clone, but more <strong>❤️🚀👌🏻</strong>
             </p>
             <a href="{{ route('login') }}" class="button">Login</a>
         </div>
