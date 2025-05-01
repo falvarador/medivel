@@ -31,9 +31,16 @@
                                         {{ Auth::user()->name }}
                                     </a>
                                     <div class="navbar-dropdown is-boxed" aria-labelledby="navbarDropdown">
+                                        <a class="navbar-item" href="#">
+                                            {{ __('My Posts') }}
+                                        </a>
+                                        <a class="navbar-item" href={{route('profile.edit')}}>
+                                            {{ __('Profile') }}
+                                        </a>
+                                        <hr class="navbar-divider">
                                         <a class="navbar-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
